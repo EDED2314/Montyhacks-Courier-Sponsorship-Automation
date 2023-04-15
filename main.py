@@ -4,21 +4,25 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def sendemail():
-  auth = os.getenv("AUTH")
+def sendemail(name_with_prefix, nameOfCompany):
+    auth = os.getenv("AUTH")
+    temp = os.getenv("template")
 
-  client = Courier(auth_token=f"{auth}")
+    client = Courier(auth_token=f"{auth}")
 
-  resp = client.send_message(
-    message={
-      "to": {
-        "email": "eddietang2314@gmail.com",
-      },
-      "template": "3VR2W6JPVG4M0DGB8RJYNK57PVK5",
-      "data": {
-          "message":"testing"
-      },
-    }
-  )
+    resp = client.send_message(
+        message={
+            "to": {
+                "email": "eddietang2314@gmail.com",
+            },
+            "template": f"{temp}",
+            "data": {
+                "name_with_prefix":name_with_prefix,
+                "nameofCompany":nameOfCompany,
+            },
+        }
+    )
 
-  print(resp['requestId'])
+    print(resp['requestId'])
+    
+sendemail("Mr. Eddie Tang","Montgomery High School")
