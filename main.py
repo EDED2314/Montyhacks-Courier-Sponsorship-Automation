@@ -1,6 +1,7 @@
 from trycourier import Courier
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -17,12 +18,13 @@ def sendemail(name_with_prefix, nameOfCompany):
             },
             "template": f"{temp}",
             "data": {
-                "name_with_prefix":name_with_prefix,
-                "nameofCompany":nameOfCompany,
+                "name_with_prefix": name_with_prefix,
+                "nameofCompany": nameOfCompany,
             },
         }
     )
 
-    print(resp['requestId'])
-    
-sendemail("Mr. Eddie Tang","Montgomery High School")
+    # print(resp['requestId'])
+
+
+sendemail("Mr. Eddie Tang", "Montgomery High School")
